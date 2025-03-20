@@ -9,13 +9,16 @@ function imOut = reproduce(imIn, n)
 
     current = zeros(n);
     block = n-1;
+    
+    load databaseImageCIEs.mat
 
     %Dela upp imIn i mosaik
     for i=1:n:xSize
         for j=1:n:ySize
             current = im(i:min(ySize,i+block),j:min(xSize,j+block),:);
+            currentCIE = calcCIE(current);
             
-            
+
         end
     end
     
