@@ -1,0 +1,9 @@
+function CIE = calcCIE(im)
+
+     = rgb2lab(im);
+
+    R = mean(im(:,:,1), "all");
+    G = mean(im(:,:,2), "all");
+    B = mean(im(:,:,3), "all");
+
+end

@@ -1,8 +1,10 @@
 function CIE = calcCIE(im)
 
-    R = mean(im(:,:,1), "all");
-    G = mean(im(:,:,2), "all");
-    B = mean(im(:,:,3), "all");
+    imCIE = rgb2lab(im);
 
-    CIE = rgb2lab([R G B]);
+    C = mean(imCIE(:,:,1), "all");
+    I = mean(imCIE(:,:,2), "all");
+    E = mean(imCIE(:,:,3), "all");
+
+    CIE = [C I E];
 end
