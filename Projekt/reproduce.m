@@ -7,7 +7,7 @@ function imOut = reproduce(imIn, n, picSize, databaseCIES)
     [ySize, xSize, ~] = size(im);
 
     % Load image database & info
-    %load databaseImageCIEs.mat;
+    % load databaseImageCIEs.mat;
     [theFiles, nrOfImages] = loadImageFiles("database_rescaled");
 
     % Main loop
