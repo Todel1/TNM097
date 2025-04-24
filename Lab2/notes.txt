@@ -1,0 +1,59 @@
+TASK 1 SUDOKU:
+
+a) 
+
+Easy+AC3: <1s
+Easy+backtracking search: 53s
+
+everything else failed
+
+AC3 - The AC3 solves the easy puzzle extremely quickly (in less than a fraction of a second), but it fails for the harder puzzles. The algorithm is great at checking for arc consistensies. When given an easy puzzle with only a few empty slots, this method finds a solution, but for harder puzzles where very few numbers are given it can't find a complete solution, only a partial one where the constraints are satisfied. 
+
+Backtracking search - Backtracking search should always find a solution, but since we are using it without any heuristics here the search tree becomes huge and is uninformed=takes a long time. For the easiest puzzle, it takes 53s, but for the harder puzzles it fails, probably due to too deep recursion and issues with memory. 
+
+DFS - same as backtracking
+
+Min-conflicts - Chooses random variable and tries to solve by minimizing local conflicts. The issue with using this algorithm for solving sudoku is that the nr of solutions are minimal in a given sudoku puzzle. It can also get stuck in a local minimum and fail to solve the puzzle.
+
+b) MRV - minimum remaining values. Choose variable with fewest legal values left in its domain. Reduces domains for other variables
+
+Degree Heuristic - used as a tie breaker when MRV gives multiple candidates. Chooses variable with most neighbours and assigns its value first, to reduce search space more.
+
+LCV - When assigning a value, choose the one that leaves the most options for neighbouring nodes domains. Helps avoid early dead-ends. 
+
+FC - keep track of remaining legal values for unassigned variables connected to the current one. Terminate search when a variable has no legal values. 
+
+BT: 53s
+BT + FC: 0.009s
+BT + MRV: 1min 30s
+BT + FC + MRV: 0.005s
+BT + LCV: 43s
+
+TASK 2 NQUEENS:
+
+DFS - by n=30 it takes significant time.
+Each state node will have n child state nodes. The tree will n*n deep, growing exponentially. Since we have no constraints that we are checking for at each step, the algorithm traverses the graph in a non-optimal way until a goal state is reached. 
+
+Backtracking search - n=32
+Without heuristics its an uninformed search which takes a long time
+
+AC3 - doesn't work
+While AC3 is great as pre-processing step to minimize search space, it isn't optimal for finding a solution since there are a many possible solutions and the algorithm in itself can't find one solution
+
+min conflicts - n=16384 takes ~ 3 min. For small n, there are few solutions but also small domain, as n grows so do the possible solutions so the algorithm effectively finds one.
+
+b) No heuristics - worst
+MRV + FC - best (n=325 in 4s)
+
+Why? LCV doesn't do much in this case (actually raises cost a bit bc you have to calculate legal values for neighbour) because any value for a given queen will leave the same amount of legal values for a "neighbouring" queen. 
+
+MRV assigns queens with the smallest domain left/ the most constrained first (diagonals conflicting with placed queen positions).
+
+FC eliminates conflicting values from all unassigned queens domains so that all illegal positions are entirely removed. This in combination with MRV works great to avoid entring illegal states.
+
+c) O(n) in practice but for good starting assignment it can be faster than linear.
+
+d) State-based search heuristics include f.e path cost and constraint violations like f.e. nr of misplaced tiles in the 8 puzzle problem or nr of conflicting queens in nqueens. We look at how far we are from a goal. In constraint-based problem solving the goal is to use the constraints to avoid unnecessarily entering illegal states and to make assignments in a smart order/manner to reduce the search space. One example is to use inference like forward checking & arc consistency and to assign values to the variables with the smallest domain first (MRV). 
+
+
+

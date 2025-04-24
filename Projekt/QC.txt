@@ -1,0 +1,19 @@
+GIRL:
+scielabval = 0.5046
+ssimval = 0.3650
+deltaEVal = 26.4347
+
+Hallon: 
+scielab = 0.8997
+ssimval = 0.4365
+deltaeVal = 50.0915
+
+White landscape:
+scielab = 1.05
+ssimval = 0.2644
+deltaeab = 38.21
+
+Starry night: 
+scie = 0.6563
+ssim = 0.2008
+delta = 48.5198
