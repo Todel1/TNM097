@@ -1,4 +1,4 @@
-function imOut = reproduce(imIn, n, picSize, databaseCIES) 
+function [imOut, im] = reproduce(imIn, n, picSize, databaseCIES) 
     % Resize image to be multiple of nxn
     [ySize, xSize, ~] = size(imIn);
     cutX = mod(xSize, n);
